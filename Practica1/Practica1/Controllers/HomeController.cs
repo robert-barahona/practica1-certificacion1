@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BEUEjercicio;
 
 namespace Practica1.Controllers
 {
@@ -10,6 +11,9 @@ namespace Practica1.Controllers
     {
         public ActionResult Index()
         {
+            Alumno a = new Alumno();
+            a.nombres = "Juan Perez";
+
             return View();
         }
 
