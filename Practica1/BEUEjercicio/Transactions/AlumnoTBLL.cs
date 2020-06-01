@@ -12,7 +12,7 @@ namespace BEUEjercicio.Transactions
         //Capa de Lógica del Negocio - Transacciones - Escritura
 
         private Entities context;
-        public Alumno alumno { get; set } //Alumno activo
+        public Alumno alumno { get; set; } //Alumno activo
 
         public AlumnoTBLL(bool wiithContext) {
             if (wiithContext)
@@ -24,6 +24,12 @@ namespace BEUEjercicio.Transactions
         public void Get(int id)
         {
             alumno = context.Alumno.Find(id);
+        }
+
+        public Alumno Retrieve(int id)
+        {
+            Entities db = new Entities();
+            return db.Alumno.Find(id);
         }
 
         public void Create(Alumno a)
@@ -61,6 +67,27 @@ namespace BEUEjercicio.Transactions
                 {
                     transaction.Rollback();
                     throw;
+                }
+            }
+        }
+
+        public void Update2(Alumno aa)
+        {
+            using (Entities db = new Entities())
+            {
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        db.Alumno.Attach(aa);
+                        db.SaveChanges();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
                 }
             }
         }
