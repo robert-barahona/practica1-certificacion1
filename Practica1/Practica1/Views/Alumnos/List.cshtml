@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BEUEjercicio.Alumno>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Listado de Alumnos</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.apellidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cedula)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_nacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lugar_nacimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sexo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cedula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_nacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lugar_nacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sexo)
+        </td>
+        <td>
+            @Html.ActionLink(" Editar ", "Edit", new { id=item.idalumno }, htmlAttributes: new { @class = "btn btn-sm btn-warning glyphicon glyphicon-pencil", @title = " Editar" }) |
+            @Html.ActionLink(" Ver ", "Details", new { id=item.idalumno }, htmlAttributes: new { @class = "btn btn-sm btn-primary glyphicon glyphicon-search", @title = " Ver" }) |
+            @Html.ActionLink(" Eliminar ", "Delete", new { id=item.idalumno }, htmlAttributes: new { @class = "btn btn-sm btn-danger glyphicon glyphicon-trash", @title = " Eliminar" })
+        </td>
+    </tr>
+}
+
+</table>
